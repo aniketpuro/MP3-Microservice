@@ -10,4 +10,4 @@ resources:
 images:
 - name: aniketpuro/frontend-service
   newName: aniketpuro/frontend-service
-  newTag: da1e9fa
+  newTag: d40c40e
