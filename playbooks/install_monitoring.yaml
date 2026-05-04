@@ -1,0 +1,41 @@
+---
+- name: Setup Node Exporter on all nodes
+  hosts: master, workers
+  become: true
+  tasks:
+    - name: Copy Node Exporter script
+      copy:
+        src: ../standalone-monitoring/install_node_exporter.sh
+        dest: /tmp/install_node_exporter.sh
+        mode: '0755'
+
+    - name: Run Node Exporter script
+      shell: /tmp/install_node_exporter.sh
+
+- name: Setup Monitoring Stack on Master
+  hosts: master
+  become: true
+  tasks:
+    - name: Copy Monitoring Stack script
+      copy:
+        src: ../standalone-monitoring/install_monitoring_stack.sh
+        dest: /tmp/install_monitoring_stack.sh
+        mode: '0755'
+
+    - name: Run Monitoring Stack script
+      shell: /tmp/install_monitoring_stack.sh
+
+    - name: Copy Prometheus config
+      copy:
+        src: ../standalone-monitoring/prometheus.yml
+        dest: /etc/prometheus/prometheus.yml
+        owner: prometheus
+        group: prometheus
+        mode: '0644'
+
+    - name: Start Prometheus service
+      systemd:
+        name: prometheus
+        state: started
+        enabled: true
+        daemon_reload: true
