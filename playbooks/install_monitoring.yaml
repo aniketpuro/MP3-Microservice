@@ -36,6 +36,6 @@
     - name: Start Prometheus service
       systemd:
         name: prometheus
-        state: started
+        state: restarted
         enabled: true
         daemon_reload: true

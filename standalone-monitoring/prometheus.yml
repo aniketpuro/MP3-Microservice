@@ -9,23 +9,23 @@ scrape_configs:
 
   - job_name: 'ec2-nodes'
     static_configs:
-      - targets: ['34.205.225.101:9100']
+      - targets: ['172.31.13.48:9100']
         labels:
           service_name: 'Worker-Node-1'
           env: 'production'
-      - targets: ['18.234.219.40:9100']
+      - targets: ['172.31.21.194:9100']
         labels:
           service_name: 'Worker-Node-2'
           env: 'production'
-      - targets: ['44.204.26.141:9100']
+      - targets: ['172.31.90.227:9100']
         labels:
           service_name: 'Worker-Node-3'
           env: 'production'
-      - targets: ['13.218.117.158:9100']
+      - targets: ['172.31.41.138:9100']
         labels:
           service_name: 'Worker-Node-4'
           env: 'production'
-      - targets: ['100.25.246.38:9100']
+      - targets: ['172.31.7.202:9100']
         labels:
           service_name: 'Controller-Node'
           env: 'production'
