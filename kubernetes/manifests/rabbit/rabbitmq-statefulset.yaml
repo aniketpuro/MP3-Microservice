@@ -23,6 +23,15 @@ spec:
         runAsUser: 999
         runAsGroup: 999
         fsGroup: 999
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 999:999 /var/lib/rabbitmq"]
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: rabbitmq-storage
+          mountPath: /var/lib/rabbitmq
       containers:
       - name: rabbitmq
         image: rabbitmq:3-management
@@ -43,6 +52,9 @@ spec:
               name: rabbitmq-cm
           - secretRef:
               name: rabbitmq-secret
+        volumeMounts:
+        - name: rabbitmq-storage
+          mountPath: /var/lib/rabbitmq
         resources:
           requests:
             cpu: "100m"
@@ -56,5 +68,9 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 60
+      volumes:
+      - name: rabbitmq-storage
+        persistentVolumeClaim:
+          claimName: rabbitmq-pvc
           
 

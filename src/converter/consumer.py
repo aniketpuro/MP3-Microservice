@@ -25,6 +25,9 @@ def main():
     )
     channel = connection.channel()
 
+    queue_name = os.environ.get("VIDEO_QUEUE")
+    channel.queue_declare(queue=queue_name, durable=True)
+
     def callback(chan, method, props, body):
         err = to_mp3.start(body, fs_videos, fs_mp3s, chan)
         if err:

@@ -22,6 +22,9 @@ def main():
     )
     channel = connection.channel()
 
+    queue_name = os.environ.get("MP3_QUEUE")
+    channel.queue_declare(queue=queue_name, durable=True)
+
     def callback(chan, method, props, body):
         err = email.notify(body)
         if err:

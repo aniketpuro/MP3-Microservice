@@ -16,6 +16,7 @@ def upload(f, fs, channel, access):
     }
 
     try:
+        channel.queue_declare(queue="video", durable=True)
         channel.basic_publish(
             exchange='',
             routing_key='video',
