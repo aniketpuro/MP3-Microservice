@@ -1,3 +1,4 @@
+
 # Variables
 $version = "v0.50.18"
 $url = "https://github.com/derailed/k9s/releases/download/$version/k9s_Windows_amd64.zip"
