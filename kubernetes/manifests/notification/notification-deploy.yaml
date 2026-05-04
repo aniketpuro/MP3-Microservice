@@ -25,7 +25,7 @@ spec:
         fsGroup: 999
       containers:
       - name: notification
-        image: aniketpuro/notification-microservices1:latest
+        image: aniketpuro/notification-service
         imagePullPolicy: Always
         securityContext:
           allowPrivilegeEscalation: false

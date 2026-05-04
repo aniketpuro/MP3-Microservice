@@ -24,7 +24,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: frontend
-          image: aniketpuro/frontend-microservices1:latest
+          image: aniketpuro/frontend-service
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false

@@ -36,9 +36,11 @@ def start(message, fs_videos, fs_mp3, channel):
     message["mp3_fid"] = str(fid)
 
     try:
+        queue_name = os.environ.get("MP3_QUEUE")
+        channel.queue_declare(queue=queue_name, durable=True)
         channel.basic_publish(
             exchange='',
-            routing_key=os.environ.get("MP3_QUEUE"),
+            routing_key=queue_name,
             body=json.dumps(message),
             properties=pika.BasicProperties(
                 delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
