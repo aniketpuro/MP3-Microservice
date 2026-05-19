@@ -1,6 +1,6 @@
 # Microservices Mp3 Converter
 
-![architecture](./public/imgs/Screenshot 2026-05-19 135135.png)
+![architecture](./public/imgs/architecture.png)
 
 ## Demo(s)
 
